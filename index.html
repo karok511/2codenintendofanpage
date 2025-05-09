@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nintendo Fan Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Nintendo Fan Page</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="consoles.html">Consoles</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <h2>Welcome to the Ultimate Nintendo Fan Experience!</h2>
+            <p>Discover the magic of Nintendo's world, from classic games to the latest releases.</p>
+        </section>
+
+        <section class="featured-content">
+            <div class="featured-item">
+                <img src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/en_US/games/switch/s/super-mario-bros-wonder-switch/super-mario-bros-wonder-switch-hero.jpg" alt="Super Mario Bros. Wonder">
+                <h3>Super Mario Bros. Wonder</h3>
+                <p>Experience the latest adventure in the Mushroom Kingdom with Mario and friends!</p>
+            </div>
+            <div class="featured-item">
+                <img src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/en_US/games/switch/t/the-legend-of-zelda-tears-of-the-kingdom-switch/the-legend-of-zelda-tears-of-the-kingdom-switch-hero.jpg" alt="The Legend of Zelda: Tears of the Kingdom">
+                <h3>The Legend of Zelda: Tears of the Kingdom</h3>
+                <p>Embark on an epic journey through the skies and depths of Hyrule.</p>
+            </div>
+            <div class="featured-item">
+                <img src="https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/en_US/switch/site-design-update/hardware/switch/nintendo-switch-oled-model-white-set/gallery/image01.jpg" alt="Nintendo Switch OLED">
+                <h3>Nintendo Switch OLED</h3>
+                <p>The latest evolution of Nintendo's revolutionary gaming system.</p>
+            </div>
+        </section>
+
+        <section class="navigation-buttons">
+            <a href="games.html" class="nav-button">
+                <i class="fas fa-gamepad button-icon"></i>
+                <span class="button-text">Explore Games</span>
+            </a>
+            <a href="consoles.html" class="nav-button">
+                <i class="fas fa-tv button-icon"></i>
+                <span class="button-text">Browse Consoles</span>
+            </a>
+        </section>
+
+        <section id="newsSection">
+            <h2>Latest News</h2>
+            <div id="newsContainer">
+                <!-- News items will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nintendo Fan Page - Alle rechten voorbehouden</p>
+        <p>Gemaakt met ❤️ door 2 Code</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Update the loadNews function to include view tracking
+        function loadNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            const news = JSON.parse(localStorage.getItem('news') || '[]');
+
+            newsContainer.innerHTML = news.map(item => `
+                <div class="news-item" onclick="trackNewsView(${item.id})">
+                    <h3>${item.title}</h3>
+                    <p class="date">${item.date} - ${item.author}</p>
+                    <p>${item.content}</p>
+                    <p class="views">Views: ${item.views || 0}</p>
+                    ${isAdmin ? `<button onclick="deleteNews(${item.id})" class="delete-btn">Verwijderen</button>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Load news when the page loads
+        document.addEventListener('DOMContentLoaded', loadNews);
+    </script>
+</body>
+</html> 
